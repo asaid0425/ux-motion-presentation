@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0c0c0e; --light:#efeee9; --ink:#f0f0f2; --dim:rgba(240,240,242,.55); --faint:rgba(240,240,242,.3);
+  --line:rgba(255,255,255,.12); --accent:oklch(0.68 0.17 250); --err:oklch(0.66 0.19 25);
+  --px:120px; --pt:96px; --pb:88px; --t-title:58px; --t-mono:24px;
+}
+deck-stage,deck-stage section{font-family:'Montserrat',Helvetica,Arial,sans-serif}
+body{margin:0;background:#08080a;color:var(--ink);font-family:'Montserrat',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;text-wrap:pretty}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--ink)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes trackslide{0%{transform:translateX(-110%)}100%{transform:translateX(330%)}}
+@keyframes dot{0%,75%,100%{opacity:.25;transform:scale(.75)}35%{opacity:1;transform:scale(1)}}
+@keyframes fillbar{0%{width:2%}70%,100%{width:78%}}
+@keyframes ringdash{0%{stroke-dashoffset:320}70%,100%{stroke-dashoffset:72}}
+@keyframes stepon{0%,8%{background:rgba(255,255,255,.1)}18%,100%{background:var(--accent)}}
+@keyframes shimmer{from{background-position:-680px 0}to{background-position:680px 0}}
+@keyframes skelswap{0%,58%{opacity:1}66%,100%{opacity:0}}
+@keyframes loadedswap{0%,58%{opacity:0}66%,100%{opacity:1}}
+@keyframes pressloop{0%,22%{transform:scale(1);filter:brightness(1);box-shadow:0 18px 50px -18px color-mix(in oklch, var(--accent) 70%, transparent)}34%,54%{transform:scale(.955);filter:brightness(.88);box-shadow:0 6px 18px -12px color-mix(in oklch, var(--accent) 60%, transparent)}66%,100%{transform:scale(1);filter:brightness(1);box-shadow:0 18px 50px -18px color-mix(in oklch, var(--accent) 70%, transparent)}}
+@keyframes likepop{0%,20%{transform:scale(1)}28%{transform:scale(1.4)}40%,100%{transform:scale(1)}}
+@keyframes likefill{0%,19.9%{opacity:0}20%,88%{opacity:1}88.1%,100%{opacity:0}}
+@keyframes confirmdot{0%,58%{opacity:0}68%,84%{opacity:1}90%,100%{opacity:0}}
+@keyframes shake{0%,20%{transform:translateX(0)}24%{transform:translateX(-11px)}28%{transform:translateX(10px)}32%{transform:translateX(-6px)}36%{transform:translateX(4px)}40%,100%{transform:translateX(0)}}
+@keyframes errborder{0%,19%{border-color:var(--line)}24%,86%{border-color:var(--err)}96%,100%{border-color:var(--line)}}
+@keyframes errmsg{0%,20%{opacity:0;transform:translateY(-10px)}32%,86%{opacity:1;transform:translateY(0)}96%,100%{opacity:0;transform:translateY(-10px)}}
+@keyframes rowcollapse{0%,18%{height:88px;opacity:1;margin-bottom:22px}40%,86%{height:0px;opacity:0;margin-bottom:0px}96%,100%{height:88px;opacity:1;margin-bottom:22px}}
+@keyframes undoin{0%,22%{transform:translateY(150%);opacity:0}38%,80%{transform:translateY(0);opacity:1}92%,100%{transform:translateY(150%);opacity:0}}
+@keyframes sheetsnap{0%,10%{transform:translateY(74%)}26%,42%{transform:translateY(40%)}58%,82%{transform:translateY(6%)}94%,100%{transform:translateY(74%)}}
+@keyframes accord{0%,16%{height:0px;opacity:0}36%,82%{height:154px;opacity:1}94%,100%{height:0px;opacity:0}}
+@keyframes chevopen{0%,16%{transform:rotate(45deg)}36%,82%{transform:rotate(225deg)}94%,100%{transform:rotate(45deg)}}
+@keyframes playerup{0%,16%{top:74%}42%,84%{top:0%}96%,100%{top:74%}}
+@keyframes artgrow{0%,16%{width:64px;height:64px;top:22px;left:28px}42%,84%{width:230px;height:230px;top:62px;left:215px}96%,100%{width:64px;height:64px;top:22px;left:28px}}
+@keyframes playerlines{0%,20%{opacity:0}46%,84%{opacity:1}94%,100%{opacity:0}}
+@keyframes togthumb{0%,20%{transform:translateX(0)}38%,70%{transform:translateX(62px)}88%,100%{transform:translateX(0)}}
+@keyframes togtrack{0%,26%{background:rgba(255,255,255,.12)}38%,70%{background:var(--accent)}80%,100%{background:rgba(255,255,255,.12)}}
+@keyframes holdpress{0%,12%{transform:scale(1)}22%,74%{transform:scale(.955)}86%,100%{transform:scale(1)}}
+@keyframes holdring{0%,16%{stroke-dashoffset:427}62%,74%{stroke-dashoffset:0}86%,100%{stroke-dashoffset:427}}
+@keyframes holdlabel{0%,59.9%{opacity:1}60%,78%{opacity:0}78.1%,100%{opacity:1}}
+@keyframes holddone{0%,59.9%{opacity:0}60%,78%{opacity:1}78.1%,100%{opacity:0}}
+@keyframes slidefill{0%,14%{width:18%}52%,74%{width:72%}90%,100%{width:18%}}
+@keyframes slidehandle{0%,14%{left:18%}52%,74%{left:72%}90%,100%{left:18%}}
+@keyframes slidegrab{0%,14%{transform:translate(-50%,-50%) scale(1)}24%,74%{transform:translate(-50%,-50%) scale(1.4)}86%,100%{transform:translate(-50%,-50%) scale(1)}}
+@keyframes ripple{0%,30%{transform:scale(0);opacity:.55}62%,100%{transform:scale(2.6);opacity:0}}
+@keyframes halo{0%,28%{transform:scale(.98);opacity:0}42%{opacity:.5}70%,100%{transform:scale(1.22);opacity:0}}
+@keyframes dragitem{0%,8%{transform:translateY(0) scale(1);box-shadow:0 0 0 rgba(0,0,0,0)}18%,20%{transform:translateY(-8px) scale(1.035);box-shadow:0 26px 54px -14px rgba(0,0,0,.75)}52%{transform:translateY(334px) scale(1.035);box-shadow:0 26px 54px -14px rgba(0,0,0,.75)}62%,88%{transform:translateY(342px) scale(1);box-shadow:0 0 0 rgba(0,0,0,0)}96%,100%{transform:translateY(0) scale(1);box-shadow:0 0 0 rgba(0,0,0,0)}}
+@keyframes shiftup{0%,16%{transform:translateY(0)}30%,88%{transform:translateY(-114px)}96%,100%{transform:translateY(0)}}
+@keyframes gapin{0%,22%{opacity:0}32%,54%{opacity:1}64%,100%{opacity:0}}
+@keyframes cursor{0%,8%{transform:translate(0,0);opacity:0}16%{opacity:1}18%{transform:translate(0,-8px)}52%{transform:translate(0,334px)}62%{transform:translate(0,342px);opacity:1}70%,100%{opacity:0}}
+@keyframes reel{0%,16%{transform:translateY(0)}34%,100%{transform:translateY(-50%)}}
+@keyframes toastin{0%,8%{transform:translateX(130%);opacity:0}26%{transform:translateX(-10px);opacity:1}34%,72%{transform:translateX(0);opacity:1}86%,100%{transform:translateX(130%);opacity:0}}
+@keyframes toastbar{0%,30%{transform:scaleX(0)}42%,72%{transform:scaleX(1)}80%,100%{transform:scaleX(0)}}
+@keyframes fly{0%,20%{transform:translate(0,0) scale(1);opacity:1}32%{transform:translate(40px,-70px) scale(.8);opacity:1}54%{transform:translate(637px,-161px) scale(.22);opacity:1}62%,100%{transform:translate(637px,-161px) scale(.12);opacity:0}}
+@keyframes cartpop{0%,54%{transform:scale(1)}62%{transform:scale(1.24)}72%,100%{transform:scale(1)}}
+@keyframes badgein{0%,54%{opacity:0;transform:scale(.3)}64%{opacity:1;transform:scale(1.15)}72%,100%{opacity:1;transform:scale(1)}}
+@keyframes labela{0%,53.9%{opacity:1}54%,92%{opacity:0}92.1%,100%{opacity:1}}
+@keyframes cartbtn{0%,6%{transform:scale(1);filter:brightness(1)}12%,16%{transform:scale(.955);filter:brightness(.86)}24%,100%{transform:scale(1);filter:brightness(1)}}
+@keyframes labelb{0%,53.9%{opacity:0}54%,92%{opacity:1}92.1%,100%{opacity:0}}
+@keyframes hardswapa{0%,24.9%{opacity:1}25%,100%{opacity:0}}
+@keyframes hardswapb{0%,24.9%{opacity:0}25%,100%{opacity:1}}
+@keyframes flash{0%,16%{color:var(--ink)}26%{color:var(--accent)}44%,100%{color:var(--ink)}}
+@keyframes nudge{0%,60%,100%{transform:translateX(0)}72%{transform:translateX(-56px)}84%{transform:translateX(0)}}
+@keyframes peek{0%,55%{transform:translateX(0)}70%,85%{transform:translateX(-70px)}100%{transform:translateX(0)}}
+@keyframes chev{0%,45%{transform:rotate(0)}60%,90%{transform:rotate(90deg)}100%{transform:rotate(0)}}
+@keyframes expandcard{0%,14%{top:132px;left:0;right:0;height:104px;opacity:1}44%,86%{top:0;left:0;right:0;height:100%;opacity:1}100%{top:132px;left:0;right:0;height:104px;opacity:1}}
+@keyframes fadelist{0%,14%{opacity:1}44%,86%{opacity:0}100%{opacity:1}}
+@keyframes flyhero{0%,14%{top:44px;left:44px;width:130px;height:130px;border-radius:12px}46%,86%{top:0;left:0;width:100%;height:330px;border-radius:14px}100%{top:44px;left:44px;width:130px;height:130px;border-radius:12px}}
+@keyframes fadelines{0%,20%{opacity:1}44%,86%{opacity:0}100%{opacity:1}}
+@keyframes modalin{0%,16%{opacity:0;transform:scale(.94)}38%,84%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.94)}}
+@keyframes scrimin{0%,16%{opacity:0}38%,84%{opacity:1}100%{opacity:0}}
+@keyframes slidefwd{0%,20%{transform:translateX(100%)}44%,84%{transform:translateX(0)}100%{transform:translateX(100%)}}
+@keyframes slideout{0%,20%{transform:translateX(0);opacity:.5}44%,84%{transform:translateX(-40%);opacity:.15}100%{transform:translateX(0);opacity:.5}}
+</style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+<section data-label="Title" data-screen-label="01" data-speaker-notes="Four forms of UX motion, shown rather than described." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">The Philosophy of UX Motion</div>
+  <div style="display:flex;flex-direction:column;gap:40px">
+    <h1 style="margin:0;font-size:190px;font-weight:500;letter-spacing:-.05em;line-height:.88">UX Motion</h1>
+    <p style="margin:0;font-size:44px;font-weight:300;color:var(--dim);letter-spacing:-.015em">Designing the behavior between states</p>
+  </div>
+  <div style="width:100px;height:4px;background:var(--accent)"></div>
+</section>
+
+<section data-label="Overview" data-screen-label="02" data-speaker-notes="Each form answers a question the user is already asking. If a transition answers none of them, cut it." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Overview</div>
+  <div style="display:flex;flex-direction:column">
+    <div style="display:flex;align-items:baseline;gap:56px;padding:38px 0;border-top:1px solid var(--line)"><span style="width:70px;font-weight:600;font-size:var(--t-mono);color:var(--faint)">01</span><h3 style="margin:0;width:640px;font-size:58px;font-weight:500;letter-spacing:-.032em">Hiding latency</h3><span style="flex:1;font-size:32px;color:var(--dim)">Is it working?</span></div>
+    <div style="display:flex;align-items:baseline;gap:56px;padding:38px 0;border-top:1px solid var(--line)"><span style="width:70px;font-weight:600;font-size:var(--t-mono);color:var(--faint)">02</span><h3 style="margin:0;width:640px;font-size:58px;font-weight:500;letter-spacing:-.032em">Gesture confirmation</h3><span style="flex:1;font-size:32px;color:var(--dim)">Did that register?</span></div>
+    <div style="display:flex;align-items:baseline;gap:56px;padding:38px 0;border-top:1px solid var(--line)"><span style="width:70px;font-weight:600;font-size:var(--t-mono);color:var(--faint)">03</span><h3 style="margin:0;width:640px;font-size:58px;font-weight:500;letter-spacing:-.032em">Motion affordance</h3><span style="flex:1;font-size:32px;color:var(--dim)">What can I do here?</span></div>
+    <div style="display:flex;align-items:baseline;gap:56px;padding:38px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><span style="width:70px;font-weight:600;font-size:var(--t-mono);color:var(--faint)">04</span><h3 style="margin:0;width:640px;font-size:58px;font-weight:500;letter-spacing:-.032em">Spatial continuity</h3><span style="flex:1;font-size:32px;color:var(--dim)">Where am I now?</span></div>
+  </div>
+  <p style="margin:0;font-size:32px;color:var(--dim);letter-spacing:-.01em">Motion should have a job.</p>
+</section>
+
+<section data-label="Ch 01" data-screen-label="03" data-speaker-notes="Chapter one — hiding latency." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Chapter 01</div>
+  <div style="display:flex;align-items:flex-end;gap:80px">
+    <span style="font-size:280px;font-weight:300;letter-spacing:-.06em;line-height:.8;color:var(--accent)">01</span>
+    <h2 style="margin:0;padding-bottom:26px;font-size:96px;font-weight:500;letter-spacing:-.04em;line-height:1">Hiding latency</h2>
+  </div>
+  <div style="display:flex;gap:70px;font-weight:600;font-size:var(--t-mono);color:var(--faint);letter-spacing:.12em;border-top:1px solid var(--line);padding-top:30px">
+    <span>INDETERMINATE</span><span>DETERMINATE</span><span>SKELETON</span><span>OPTIMISTIC</span>
+  </div>
+</section>
+
+<section data-label="Indeterminate" data-screen-label="04" data-speaker-notes="Indeterminate: the system is working, duration unknown. Keep it short and local." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Indeterminate</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">DURATION UNKNOWN</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:44px">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:420px;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center">
+        <span style="width:96px;height:96px;border:5px solid rgba(255,255,255,.12);border-top-color:var(--accent);border-radius:50%;animation:spin .85s linear infinite"></span>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">SPINNER</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:420px;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center;padding:0 56px">
+        <div style="width:100%;height:12px;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden"><div style="width:32%;height:100%;border-radius:6px;background:var(--accent);animation:trackslide 1.5s cubic-bezier(.65,0,.35,1) infinite"></div></div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">TRACK</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:420px;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center;gap:20px">
+        <span style="width:26px;height:26px;border-radius:50%;background:var(--accent);animation:dot 1.1s ease-in-out infinite"></span>
+        <span style="width:26px;height:26px;border-radius:50%;background:var(--accent);animation:dot 1.1s ease-in-out .15s infinite"></span>
+        <span style="width:26px;height:26px;border-radius:50%;background:var(--accent);animation:dot 1.1s ease-in-out .3s infinite"></span>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">PULSE</span>
+    </div>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">Never fills. Never finishes. Use under a second.</p>
+</section>
+
+<section data-label="Determinate" data-screen-label="05" data-speaker-notes="Determinate: the total is known. Always forward, never reverse." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Determinate</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">TOTAL KNOWN</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:44px">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:420px;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center;padding:0 56px">
+        <div style="width:100%;height:16px;border-radius:8px;background:rgba(255,255,255,.1);overflow:hidden"><div style="height:100%;border-radius:8px;background:var(--accent);animation:fillbar 4s cubic-bezier(.25,.1,.25,1) infinite"></div></div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">BAR</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:420px;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center">
+        <svg viewBox="0 0 120 120" style="width:190px;height:190px;transform:rotate(-90deg)"><circle cx="60" cy="60" r="51" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="9" /><circle cx="60" cy="60" r="51" fill="none" stroke="oklch(0.68 0.17 250)" stroke-width="9" stroke-linecap="round" stroke-dasharray="320" stroke-dashoffset="320" style="animation:ringdash 4s cubic-bezier(.25,.1,.25,1) infinite" /></svg>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">RING</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:420px;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center;padding:0 56px">
+        <div style="display:flex;gap:14px;width:100%">
+          <span style="flex:1;height:14px;border-radius:7px;background:rgba(255,255,255,.1);animation:stepon 4s linear infinite"></span>
+          <span style="flex:1;height:14px;border-radius:7px;background:rgba(255,255,255,.1);animation:stepon 4s linear .7s infinite"></span>
+          <span style="flex:1;height:14px;border-radius:7px;background:rgba(255,255,255,.1);animation:stepon 4s linear 1.4s infinite"></span>
+          <span style="flex:1;height:14px;border-radius:7px;background:rgba(255,255,255,.1);animation:stepon 4s linear 2.1s infinite"></span>
+          <span style="flex:1;height:14px;border-radius:7px;background:rgba(255,255,255,.1);animation:stepon 4s linear 2.8s infinite"></span>
+        </div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">STEPS</span>
+    </div>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">Always forward. Never reset, never reverse.</p>
+</section>
+
+<section data-label="Skeleton" data-screen-label="06" data-speaker-notes="The skeleton is a promise about the shape of what is coming. Watch it resolve." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Skeleton</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">SHAPE KNOWN</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:70px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:440px;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center">
+        <span style="width:70px;height:70px;border:4px solid rgba(255,255,255,.12);border-top-color:rgba(255,255,255,.45);border-radius:50%;animation:spin .85s linear infinite"></span>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--faint);letter-spacing:.1em">SPINNER — SHAPE UNKNOWN</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:440px;border:1px solid var(--accent);border-radius:16px;position:relative;overflow:hidden">
+        <div style="position:absolute;inset:0;padding:44px;display:flex;flex-direction:column;gap:26px;animation:skelswap 4.4s ease-in-out infinite">
+          <div style="height:30px;width:56%;border-radius:8px;background:linear-gradient(90deg,color-mix(in oklch, var(--accent) 28%, transparent) 0%,color-mix(in oklch, var(--accent) 78%, transparent) 50%,color-mix(in oklch, var(--accent) 28%, transparent) 100%);background-size:680px 100%;animation:shimmer 1.7s linear infinite"></div>
+          <div style="height:20px;width:92%;border-radius:6px;background:linear-gradient(90deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.06) 100%);background-size:680px 100%;animation:shimmer 1.7s linear .08s infinite"></div>
+          <div style="height:20px;width:80%;border-radius:6px;background:linear-gradient(90deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.06) 100%);background-size:680px 100%;animation:shimmer 1.7s linear .16s infinite"></div>
+          <div style="height:20px;width:66%;border-radius:6px;background:linear-gradient(90deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.06) 100%);background-size:680px 100%;animation:shimmer 1.7s linear .24s infinite"></div>
+          <div style="height:20px;width:40%;border-radius:6px;background:linear-gradient(90deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.06) 100%);background-size:680px 100%;animation:shimmer 1.7s linear .32s infinite"></div>
+        </div>
+        <div style="position:absolute;inset:0;padding:44px;display:flex;flex-direction:column;gap:26px;animation:loadedswap 4.4s ease-in-out infinite">
+          <div style="height:30px;width:56%;border-radius:8px;background:rgba(255,255,255,.52)"></div>
+          <div style="height:20px;width:92%;border-radius:6px;background:rgba(255,255,255,.22)"></div>
+          <div style="height:20px;width:80%;border-radius:6px;background:rgba(255,255,255,.22)"></div>
+          <div style="height:20px;width:66%;border-radius:6px;background:rgba(255,255,255,.22)"></div>
+          <div style="height:20px;width:40%;border-radius:6px;background:rgba(255,255,255,.22)"></div>
+        </div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--accent);letter-spacing:.1em">SKELETON → CONTENT, SAME GEOMETRY</span>
+    </div>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">A wait becomes an arrival.</p>
+</section>
+
+<section data-label="Optimistic UI" data-screen-label="07" data-speaker-notes="The UI commits on tap. Confirmation arrives later, quietly. Only for actions that are cheap to reverse." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Optimistic UI</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">COMMIT ON TAP · CONFIRM LATER</span>
+  </div>
+  <div style="height:520px;border:1px solid var(--line);border-radius:20px;display:flex;align-items:center;justify-content:center;position:relative">
+    <div style="position:relative;animation:likepop 4s cubic-bezier(.34,1.4,.4,1) infinite">
+      <svg viewBox="0 0 24 24" style="width:200px;height:200px" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M12 20.5C6.5 16.5 3 13.7 3 9.9 3 7.2 5.1 5 7.8 5c1.6 0 3.2.8 4.2 2.2C13 5.8 14.6 5 16.2 5 18.9 5 21 7.2 21 9.9c0 3.8-3.5 6.6-9 10.6Z" /></svg>
+      <svg viewBox="0 0 24 24" style="width:200px;height:200px;position:absolute;inset:0;animation:likefill 4s steps(1,end) infinite" fill="oklch(0.68 0.17 250)"><path d="M12 20.5C6.5 16.5 3 13.7 3 9.9 3 7.2 5.1 5 7.8 5c1.6 0 3.2.8 4.2 2.2C13 5.8 14.6 5 16.2 5 18.9 5 21 7.2 21 9.9c0 3.8-3.5 6.6-9 10.6Z" /></svg>
+    </div>
+    <span style="position:absolute;bottom:56px;font-weight:600;font-size:var(--t-mono);color:var(--accent);letter-spacing:.14em;animation:confirmdot 4s steps(1,end) infinite">SERVER CONFIRMED</span>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">The interface replies first; the network catches up.</p>
+</section>
+
+<section data-label="Ch 02" data-screen-label="08" data-speaker-notes="Chapter two — gesture confirmation." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Chapter 02</div>
+  <div style="display:flex;align-items:flex-end;gap:80px">
+    <span style="font-size:280px;font-weight:300;letter-spacing:-.06em;line-height:.8;color:var(--accent)">02</span>
+    <h2 style="margin:0;padding-bottom:26px;font-size:96px;font-weight:500;letter-spacing:-.04em;line-height:1">Gesture confirmation</h2>
+  </div>
+  <div style="display:flex;gap:70px;font-weight:600;font-size:var(--t-mono);color:var(--faint);letter-spacing:.12em;border-top:1px solid var(--line);padding-top:30px">
+    <span>INPUT → REACTION → RESULT</span><span>TOGGLE</span><span>HOLD</span><span>SLIDER</span>
+  </div>
+</section>
+
+<section data-label="Button press" data-screen-label="09" data-speaker-notes="120ms down, 120ms back. The reaction lands while the finger is still there." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">A button being pressed</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">SCALE 96% · RIPPLE · HALO · 120 MS</span>
+  </div>
+  <div style="height:520px;border:1px solid var(--line);border-radius:20px;display:flex;align-items:center;justify-content:center">
+    <div style="position:relative;display:flex;align-items:center;justify-content:center">
+      <div style="position:absolute;inset:-14px;border-radius:26px;border:2px solid var(--accent);animation:halo 2.6s cubic-bezier(.2,0,0,1) infinite"></div>
+      <div style="position:relative;padding:44px 100px;border-radius:18px;background:var(--accent);color:#0c0c0e;font-size:44px;font-weight:500;letter-spacing:-.015em;overflow:hidden;animation:pressloop 2.6s cubic-bezier(.4,0,.2,1) infinite">
+        <span style="position:absolute;left:50%;top:50%;width:320px;height:320px;margin:-160px 0 0 -160px;border-radius:50%;background:rgba(255,255,255,.85);animation:ripple 2.6s cubic-bezier(.2,0,0,1) infinite"></span>
+        <span style="position:relative">Save changes</span>
+      </div>
+    </div>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">The reaction is the only part the user perceives instantly.</p>
+</section>
+
+<section data-label="Toggle, hold, slider" data-screen-label="10" data-speaker-notes="Three more acknowledgements: a state that flips, an action that has to be earned, and a value that tracks the pointer." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Toggle, hold, slider</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">STATE · COMMITMENT · TRACKING</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:44px">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:420px;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center">
+        <div style="width:130px;height:68px;border-radius:34px;padding:7px;box-sizing:border-box;background:rgba(255,255,255,.12);animation:togtrack 4s cubic-bezier(.4,0,.2,1) infinite">
+          <div style="width:54px;height:54px;border-radius:50%;background:#f0f0f2;animation:togthumb 4s cubic-bezier(.34,1.3,.4,1) infinite"></div>
+        </div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">TOGGLE — 160 MS</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:420px;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center">
+        <div style="position:relative;width:200px;height:200px;animation:holdpress 4s cubic-bezier(.4,0,.2,1) infinite">
+          <svg viewBox="0 0 152 152" style="position:absolute;inset:0;transform:rotate(-90deg)"><circle cx="76" cy="76" r="68" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="7" /><circle cx="76" cy="76" r="68" fill="none" stroke="oklch(0.68 0.17 250)" stroke-width="7" stroke-linecap="round" stroke-dasharray="427" stroke-dashoffset="427" style="animation:holdring 4s linear infinite" /></svg>
+          <div style="position:absolute;inset:22px;border-radius:50%;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center">
+            <span style="position:absolute;font-size:26px;color:var(--dim);animation:holdlabel 4s steps(1,end) infinite">Hold</span>
+            <span style="position:absolute;font-size:26px;color:var(--accent);animation:holddone 4s steps(1,end) infinite">Deleted</span>
+          </div>
+        </div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">HOLD TO CONFIRM — 1.8 S</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:420px;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;padding:0 56px">
+        <div style="position:relative;width:100%;height:12px;border-radius:6px;background:rgba(255,255,255,.12)">
+          <div style="height:100%;border-radius:6px;background:var(--accent);animation:slidefill 4s cubic-bezier(.3,0,.2,1) infinite"></div>
+          <div style="position:absolute;top:50%;width:46px;height:46px;border-radius:50%;background:#f0f0f2;box-shadow:0 0 0 10px color-mix(in oklch, var(--accent) 22%, transparent);animation:slidehandle 4s cubic-bezier(.3,0,.2,1) infinite, slidegrab 4s cubic-bezier(.3,0,.2,1) infinite"></div>
+        </div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">SLIDER — 1:1 WITH POINTER</span>
+    </div>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">Flip, commit, track — three different kinds of reply.</p>
+</section>
+
+<section data-label="Ch 03" data-screen-label="11" data-speaker-notes="Chapter three — motion affordance." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Chapter 03</div>
+  <div style="display:flex;align-items:flex-end;gap:80px">
+    <span style="font-size:280px;font-weight:300;letter-spacing:-.06em;line-height:.8;color:var(--accent)">03</span>
+    <h2 style="margin:0;padding-bottom:26px;font-size:96px;font-weight:500;letter-spacing:-.04em;line-height:1">Motion affordance</h2>
+  </div>
+  <div style="display:flex;gap:70px;font-weight:600;font-size:var(--t-mono);color:var(--faint);letter-spacing:.12em;border-top:1px solid var(--line);padding-top:30px">
+    <span>DRAG &amp; DROP</span><span>CHANGE</span><span>NOTIFICATION</span><span>ADD TO CART</span><span>ERROR &amp; UNDO</span>
+  </div>
+</section>
+
+<section data-label="Drag and drop" data-screen-label="12" data-speaker-notes="Pick up, reorder, drop. The list rearranges itself around the item while the gesture is still in progress." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Drag and drop</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">LIFT · REORDER · SETTLE</span>
+  </div>
+  <div style="display:flex;justify-content:center">
+    <div style="width:760px;height:490px;border:1px solid var(--line);border-radius:18px;padding:30px;box-sizing:border-box">
+      <div style="position:relative;height:430px">
+        <div style="position:absolute;left:0;right:0;top:342px;height:88px;border-radius:12px;background:transparent;border:2px dashed var(--accent);animation:gapin 5.2s ease-in-out infinite;box-sizing:border-box"></div>
+        <div style="position:absolute;left:0;right:0;top:114px;height:88px;border-radius:12px;background:rgba(255,255,255,.08);animation:shiftup 5.2s cubic-bezier(.2,0,0,1) infinite"></div>
+        <div style="position:absolute;left:0;right:0;top:228px;height:88px;border-radius:12px;background:rgba(255,255,255,.08);animation:shiftup 5.2s cubic-bezier(.2,0,0,1) infinite"></div>
+        <div style="position:absolute;left:0;right:0;top:342px;height:88px;border-radius:12px;background:rgba(255,255,255,.08);"></div>
+        <div style="position:absolute;left:0;right:0;top:0;height:88px;border-radius:12px;background:color-mix(in oklch, var(--accent) 48%, transparent);display:flex;align-items:center;padding:0 30px;gap:20px;box-sizing:border-box;animation:dragitem 5.2s cubic-bezier(.2,0,0,1) infinite;z-index:2">
+          <span style="display:flex;flex-direction:column;gap:5px"><span style="width:26px;height:3px;border-radius:2px;background:rgba(255,255,255,.7)"></span><span style="width:26px;height:3px;border-radius:2px;background:rgba(255,255,255,.7)"></span><span style="width:26px;height:3px;border-radius:2px;background:rgba(255,255,255,.7)"></span></span>
+          <span style="height:18px;width:210px;border-radius:6px;background:rgba(255,255,255,.55)"></span>
+        </div>
+        <span style="position:absolute;left:250px;top:56px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 0 0 8px rgba(255,255,255,.14);animation:cursor 5.2s cubic-bezier(.2,0,0,1) infinite;z-index:3"></span>
+      </div>
+    </div>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">The list rearranges itself before the drop.</p>
+</section>
+
+<section data-label="Change" data-screen-label="13" data-speaker-notes="A silent value change is invisible. The transition says: look here." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Change</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">280 MS · ROLL + FLASH</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:70px">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:440px;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center;position:relative">
+        <span style="position:absolute;font-size:150px;font-weight:400;letter-spacing:-.05em;color:var(--dim);animation:hardswapa 3.4s steps(1,end) infinite">1,204</span>
+        <span style="position:absolute;font-size:150px;font-weight:400;letter-spacing:-.05em;color:var(--dim);animation:hardswapb 3.4s steps(1,end) infinite">1,317</span>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--faint);letter-spacing:.1em">NO MOTION — INSTANT SWAP</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:440px;border:1px solid var(--accent);border-radius:16px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <div style="height:250px;overflow:hidden">
+          <div style="display:flex;flex-direction:column;animation:reel 3.4s cubic-bezier(.2,0,0,1) infinite">
+            <span style="height:250px;line-height:250px;font-size:150px;font-weight:400;letter-spacing:-.05em;animation:flash 3.4s ease-in-out infinite">1,204</span>
+            <span style="height:250px;line-height:250px;font-size:150px;font-weight:400;letter-spacing:-.05em;animation:flash 3.4s ease-in-out infinite">1,317</span>
+          </div>
+        </div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--accent);letter-spacing:.1em">ANIMATED — SOMETHING CHANGED HERE</span>
+    </div>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">If it can change unwatched, it needs a transition.</p>
+</section>
+
+<section data-label="Invitation" data-screen-label="14" data-speaker-notes="Three small motions, each replacing a line of instructional copy." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Invitation</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">MOTION INSTEAD OF COPY</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:56px">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:460px;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;align-items:center;padding-left:44px">
+        <div style="display:flex;gap:22px;animation:peek 3.6s cubic-bezier(.4,0,.2,1) infinite">
+          <div style="width:230px;height:280px;flex:none;border-radius:14px;background:color-mix(in oklch, var(--accent) 40%, transparent)"></div>
+          <div style="width:230px;height:280px;flex:none;border-radius:14px;background:rgba(255,255,255,.09)"></div>
+          <div style="width:230px;height:280px;flex:none;border-radius:14px;background:rgba(255,255,255,.09)"></div>
+        </div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">THIS SCROLLS SIDEWAYS</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:460px;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:20px;padding:0 0 0 44px">
+        <div style="height:88px;border-radius:12px 0 0 12px;background:rgba(255,255,255,.07)"></div>
+        <div style="position:relative;height:88px">
+          <div style="position:absolute;inset:0 0 0 auto;width:130px;border-radius:12px 0 0 12px;background:var(--accent)"></div>
+          <div style="position:absolute;inset:0;border-radius:12px 0 0 12px;background:#1b1b20;animation:nudge 3.6s cubic-bezier(.4,0,.2,1) infinite"></div>
+        </div>
+        <div style="height:88px;border-radius:12px 0 0 12px;background:rgba(255,255,255,.07)"></div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">THIS CAN BE SWIPED</span>
+    </div>
+      </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">Each one replaces a sentence of copy.</p>
+</section>
+
+<section data-label="Notification" data-screen-label="15" data-speaker-notes="Entering from the edge tells the user this arrived from outside the flow. Decelerate in, accelerate out." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Notification</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">ENTER FROM EDGE · DECELERATE</span>
+  </div>
+  <div style="display:flex;justify-content:center">
+    <div style="width:1080px;height:490px;border:1px solid var(--line);border-radius:18px;position:relative;overflow:hidden;padding:44px;box-sizing:border-box">
+      <div style="display:flex;flex-direction:column;gap:24px;opacity:.4">
+        <div style="height:26px;width:38%;border-radius:8px;background:rgba(255,255,255,.16)"></div>
+        <div style="height:16px;width:72%;border-radius:6px;background:rgba(255,255,255,.09)"></div>
+        <div style="height:16px;width:64%;border-radius:6px;background:rgba(255,255,255,.09)"></div>
+        <div style="height:16px;width:70%;border-radius:6px;background:rgba(255,255,255,.09)"></div>
+      </div>
+      <div style="position:absolute;right:44px;top:44px;width:420px;border-radius:14px;background:#1a1a21;border:1px solid var(--accent);padding:30px;box-sizing:border-box;box-shadow:0 30px 70px -22px rgba(0,0,0,.8);animation:toastin 4.6s cubic-bezier(.2,0,0,1) infinite">
+        <div style="height:5px;width:100%;border-radius:3px;background:var(--accent);transform-origin:left;animation:toastbar 4.6s cubic-bezier(.2,0,0,1) infinite"></div>
+        <div style="display:flex;flex-direction:column;gap:16px;padding-top:26px">
+          <div style="height:20px;width:64%;border-radius:6px;background:rgba(255,255,255,.5)"></div>
+          <div style="height:16px;width:92%;border-radius:6px;background:rgba(255,255,255,.2)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">Arriving from the edge says: this came from outside.</p>
+</section>
+
+<section data-label="Add to cart" data-screen-label="16" data-speaker-notes="The item travels to the cart and the badge counts up. The user never has to check whether it worked." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Add to cart</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">FLY TO TARGET · BADGE COUNT-UP</span>
+  </div>
+  <div style="display:flex;justify-content:center">
+    <div style="width:900px;height:490px;border:1px solid var(--line);border-radius:18px;position:relative;overflow:hidden;box-sizing:border-box">
+      <div style="position:absolute;right:44px;top:44px;width:90px;height:90px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;animation:cartpop 4.6s cubic-bezier(.2,0,0,1) infinite">
+        <svg viewBox="0 0 24 24" style="width:48px;height:48px" fill="none" stroke="rgba(255,255,255,.62)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h2.2l2.6 11.2h11" /><path d="M6.2 6.2h15L19 12.4H7.6" /><circle cx="9" cy="19.4" r="1.7" /><circle cx="17.4" cy="19.4" r="1.7" /></svg>
+        <span style="position:absolute;right:-12px;top:-12px;min-width:42px;height:42px;border-radius:21px;background:var(--accent);color:#0c0c0e;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:22px;animation:badgein 4.6s cubic-bezier(.2,0,0,1) infinite">1</span>
+      </div>
+      <div style="position:absolute;left:44px;top:120px;width:260px;height:260px;border-radius:12px;background:color-mix(in oklch, var(--accent) 42%, transparent);animation:fly 4.6s cubic-bezier(.3,0,.2,1) infinite"></div>
+      <div style="position:absolute;left:44px;top:120px;width:260px;height:260px;border-radius:12px;border:1px dashed var(--line);box-sizing:border-box"></div>
+      <div style="position:absolute;left:344px;top:150px;display:flex;flex-direction:column;gap:18px;width:300px">
+        <div style="height:22px;width:80%;border-radius:6px;background:rgba(255,255,255,.28)"></div>
+        <div style="height:16px;width:50%;border-radius:6px;background:rgba(255,255,255,.14)"></div>
+      </div>
+      <div style="position:absolute;left:344px;top:300px;width:300px;height:80px;border-radius:12px;overflow:hidden;animation:cartbtn 4.6s cubic-bezier(.4,0,.2,1) infinite">
+        <div style="position:absolute;inset:0;border-radius:12px;background:var(--accent);color:#0c0c0e;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:500;animation:labela 4.6s steps(1,end) infinite">Add to cart</div>
+        <div style="position:absolute;inset:0;border-radius:12px;border:1px solid var(--accent);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:500;box-sizing:border-box;animation:labelb 4.6s steps(1,end) infinite">Added</div>
+      </div>
+    </div>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">The item goes somewhere the user can see.</p>
+</section>
+
+<section data-label="Error and undo" data-screen-label="17" data-speaker-notes="Error draws attention to the cause. Delete keeps the door open." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Error and undo</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">SHAKE · COLLAPSE · RECOVER</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:460px;border:1px solid var(--line);border-radius:16px;display:flex;flex-direction:column;justify-content:center;gap:22px;padding:0 56px">
+        <div style="height:76px;border:2px solid var(--line);border-radius:12px;box-sizing:border-box;animation:shake .9s cubic-bezier(.36,.07,.19,.97) infinite, errborder 4s linear infinite;animation-duration:4s,4s"></div>
+        <div style="display:flex;align-items:center;gap:14px;animation:errmsg 4s cubic-bezier(.2,0,0,1) infinite">
+          <span style="width:22px;height:22px;border-radius:50%;background:var(--err);flex:none"></span>
+          <span style="height:16px;width:62%;border-radius:6px;background:color-mix(in oklch, var(--err) 55%, transparent)"></span>
+        </div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">ERROR — SHAKE, THEN EXPLAIN</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:460px;border:1px solid var(--line);border-radius:16px;position:relative;overflow:hidden;padding:44px;box-sizing:border-box">
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <div style="height:88px;border-radius:12px;background:rgba(255,255,255,.07);flex:none"></div>
+          <div style="border-radius:12px;background:color-mix(in oklch, var(--accent) 40%, transparent);flex:none;overflow:hidden;animation:rowcollapse 4s cubic-bezier(.2,0,0,1) infinite"></div>
+          <div style="height:88px;border-radius:12px;background:rgba(255,255,255,.07);flex:none"></div>
+          <div style="height:88px;border-radius:12px;background:rgba(255,255,255,.07);flex:none"></div>
+        </div>
+        <div style="position:absolute;left:44px;right:44px;bottom:36px;height:78px;border-radius:12px;background:#1c1c23;border:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;box-sizing:border-box;animation:undoin 4s cubic-bezier(.2,0,0,1) infinite">
+          <span style="height:16px;width:130px;border-radius:6px;background:rgba(255,255,255,.28)"></span>
+          <span style="font-weight:600;font-size:var(--t-mono);color:var(--accent);letter-spacing:.14em">UNDO</span>
+        </div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">DELETE — COLLAPSE, THEN OFFER UNDO</span>
+    </div>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">Show what went wrong, and leave a way back.</p>
+</section>
+
+<section data-label="Ch 04" data-screen-label="18" data-speaker-notes="Chapter four — spatial continuity." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Chapter 04</div>
+  <div style="display:flex;align-items:flex-end;gap:80px">
+    <span style="font-size:280px;font-weight:300;letter-spacing:-.06em;line-height:.8;color:var(--accent)">04</span>
+    <h2 style="margin:0;padding-bottom:26px;font-size:96px;font-weight:500;letter-spacing:-.04em;line-height:1">Spatial continuity</h2>
+  </div>
+  <div style="display:flex;gap:70px;font-weight:600;font-size:var(--t-mono);color:var(--faint);letter-spacing:.12em;border-top:1px solid var(--line);padding-top:30px">
+    <span>EXPANSION</span><span>SHARED ELEMENT</span><span>SHEET</span><span>PLAYER</span><span>DEPTH &amp; DIRECTION</span>
+  </div>
+</section>
+
+<section data-label="Expansion" data-screen-label="19" data-speaker-notes="The card becomes the page. Nothing needs explaining." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Expansion</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">320 MS · STANDARD</span>
+  </div>
+  <div style="display:flex;justify-content:center">
+    <div style="width:620px;height:500px;border:1px solid var(--line);border-radius:18px;padding:36px;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:36px;display:flex;flex-direction:column;gap:28px;animation:fadelist 4.4s ease-in-out infinite">
+        <div style="height:104px;border-radius:12px;background:rgba(255,255,255,.07)"></div>
+        <div style="height:104px;border-radius:12px;background:transparent"></div>
+        <div style="height:104px;border-radius:12px;background:rgba(255,255,255,.07)"></div>
+        <div style="height:104px;border-radius:12px;background:rgba(255,255,255,.07)"></div>
+      </div>
+      <div style="position:absolute;inset:36px">
+        <div style="position:absolute;border-radius:12px;background:color-mix(in oklch, var(--accent) 45%, transparent);animation:expandcard 4.4s cubic-bezier(.2,0,0,1) infinite"></div>
+      </div>
+    </div>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">Objects should not teleport.</p>
+</section>
+
+<section data-label="Shared element" data-screen-label="20" data-speaker-notes="One element survives the cut and carries the user's attention with it." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Shared element</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">THUMBNAIL → HERO</span>
+  </div>
+  <div style="display:flex;justify-content:center">
+    <div style="width:620px;height:500px;border:1px solid var(--line);border-radius:18px;padding:0;position:relative;overflow:hidden">
+      <div style="position:absolute;left:200px;top:52px;right:44px;display:flex;flex-direction:column;gap:18px;animation:fadelines 4.4s ease-in-out infinite">
+        <div style="height:22px;width:80%;border-radius:6px;background:rgba(255,255,255,.24)"></div>
+        <div style="height:18px;width:56%;border-radius:6px;background:rgba(255,255,255,.12)"></div>
+      </div>
+      <div style="position:absolute;left:44px;top:390px;right:44px;display:flex;flex-direction:column;gap:18px;animation:loadedswap 4.4s ease-in-out infinite">
+        <div style="height:24px;width:70%;border-radius:6px;background:rgba(255,255,255,.28)"></div>
+        <div style="height:18px;width:90%;border-radius:6px;background:rgba(255,255,255,.12)"></div>
+      </div>
+      <div style="position:absolute;background:color-mix(in oklch, var(--accent) 45%, transparent);animation:flyhero 4.4s cubic-bezier(.2,0,0,1) infinite"></div>
+    </div>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">One element survives the transition.</p>
+</section>
+
+<section data-label="Sheet and accordion" data-screen-label="21" data-speaker-notes="Both reveal in place. The sheet has snap points; the accordion pushes the list down rather than replacing it." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Sheet and accordion</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">SNAP POINTS · REVEAL IN PLACE</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:460px;border:1px solid var(--line);border-radius:16px;position:relative;overflow:hidden">
+        <div style="position:absolute;inset:36px;display:flex;flex-direction:column;gap:20px;opacity:.35">
+          <div style="height:60px;border-radius:10px;background:rgba(255,255,255,.1)"></div>
+          <div style="height:60px;border-radius:10px;background:rgba(255,255,255,.1)"></div>
+        </div>
+        <div style="position:absolute;left:0;right:0;top:0;height:100%;border-radius:18px 18px 0 0;background:#1a1a21;border-top:1px solid var(--accent);padding:22px 36px;box-sizing:border-box;animation:sheetsnap 5s cubic-bezier(.2,0,0,1) infinite">
+          <div style="width:70px;height:6px;border-radius:3px;background:rgba(255,255,255,.35);margin:0 auto 30px"></div>
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <div style="height:22px;width:56%;border-radius:6px;background:rgba(255,255,255,.4)"></div>
+            <div style="height:16px;width:88%;border-radius:6px;background:rgba(255,255,255,.16)"></div>
+            <div style="height:16px;width:72%;border-radius:6px;background:rgba(255,255,255,.16)"></div>
+          </div>
+        </div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">BOTTOM SHEET — PEEK, MID, FULL</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:460px;border:1px solid var(--line);border-radius:16px;padding:44px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+        <div style="height:72px;border-radius:12px;background:rgba(255,255,255,.07);flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 28px">
+          <span style="height:16px;width:150px;border-radius:6px;background:rgba(255,255,255,.3)"></span>
+          <span style="width:16px;height:16px;border-right:3px solid var(--accent);border-bottom:3px solid var(--accent);animation:chevopen 4.4s cubic-bezier(.2,0,0,1) infinite"></span>
+        </div>
+        <div style="border-radius:12px;background:color-mix(in oklch, var(--accent) 14%, transparent);border:1px solid var(--accent);box-sizing:border-box;overflow:hidden;flex:none;animation:accord 4.4s cubic-bezier(.2,0,0,1) infinite">
+          <div style="padding:26px;display:flex;flex-direction:column;gap:16px">
+            <div style="height:16px;width:88%;border-radius:6px;background:rgba(255,255,255,.22)"></div>
+            <div style="height:16px;width:76%;border-radius:6px;background:rgba(255,255,255,.22)"></div>
+            <div style="height:16px;width:54%;border-radius:6px;background:rgba(255,255,255,.22)"></div>
+          </div>
+        </div>
+        <div style="height:72px;border-radius:12px;background:rgba(255,255,255,.07);flex:none"></div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">ACCORDION — PUSHES, NEVER REPLACES</span>
+    </div>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">Revealed in place, so the context never leaves.</p>
+</section>
+
+<section data-label="Mini to full player" data-screen-label="22" data-speaker-notes="The mini player grows into the full player rather than opening a new screen. Same object, different size." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Growing in place</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">MINI PLAYER → FULL PLAYER</span>
+  </div>
+  <div style="display:flex;justify-content:center">
+    <div style="width:660px;height:520px;border:1px solid var(--line);border-radius:18px;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:36px;display:flex;flex-direction:column;gap:20px;opacity:.3">
+        <div style="height:60px;border-radius:10px;background:rgba(255,255,255,.1)"></div>
+        <div style="height:60px;border-radius:10px;background:rgba(255,255,255,.1)"></div>
+        <div style="height:60px;border-radius:10px;background:rgba(255,255,255,.1)"></div>
+      </div>
+      <div style="position:absolute;left:0;right:0;bottom:0;background:#1a1a21;border-top:1px solid var(--accent);animation:playerup 4.4s cubic-bezier(.2,0,0,1) infinite">
+        <div style="position:absolute;border-radius:10px;background:color-mix(in oklch, var(--accent) 45%, transparent);animation:artgrow 4.4s cubic-bezier(.2,0,0,1) infinite"></div>
+        <div style="position:absolute;left:105px;right:105px;top:330px;display:flex;flex-direction:column;gap:18px;animation:playerlines 4.4s ease-in-out infinite">
+          <div style="height:22px;width:58%;border-radius:6px;background:rgba(255,255,255,.3)"></div>
+          <div style="height:8px;border-radius:4px;background:rgba(255,255,255,.14)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">The same object, at a different size.</p>
+</section>
+
+<section data-label="Depth & direction" data-screen-label="23" data-speaker-notes="Depth says what a surface is. Direction says where you are." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Depth and direction</h2>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">280 MS · ENTER</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:70px">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:440px;border:1px solid var(--line);border-radius:16px;position:relative;overflow:hidden;padding:36px">
+        <div style="position:absolute;inset:36px;display:flex;flex-direction:column;gap:22px">
+          <div style="height:70px;border-radius:10px;background:rgba(255,255,255,.07)"></div>
+          <div style="height:70px;border-radius:10px;background:rgba(255,255,255,.07)"></div>
+          <div style="height:70px;border-radius:10px;background:rgba(255,255,255,.07)"></div>
+        </div>
+        <div style="position:absolute;inset:0;background:rgba(0,0,0,.55);animation:scrimin 4s ease-in-out infinite"></div>
+        <div style="position:absolute;left:70px;right:70px;top:130px;height:190px;border-radius:14px;background:#1e1e26;border:1px solid var(--accent);animation:modalin 4s cubic-bezier(.2,0,0,1) infinite"></div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">DEPTH — TEMPORARY LAYER</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="height:440px;border:1px solid var(--line);border-radius:16px;position:relative;overflow:hidden">
+        <div style="position:absolute;inset:0;padding:36px;display:flex;flex-direction:column;gap:22px;background:var(--bg);animation:slideout 4s cubic-bezier(.2,0,0,1) infinite">
+          <div style="height:70px;border-radius:10px;background:rgba(255,255,255,.07)"></div>
+          <div style="height:70px;border-radius:10px;background:rgba(255,255,255,.07)"></div>
+          <div style="height:70px;border-radius:10px;background:rgba(255,255,255,.07)"></div>
+        </div>
+        <div style="position:absolute;inset:0;padding:36px;display:flex;flex-direction:column;gap:22px;background:#14141a;border-left:1px solid var(--accent);animation:slidefwd 4s cubic-bezier(.2,0,0,1) infinite">
+          <div style="height:120px;border-radius:10px;background:color-mix(in oklch, var(--accent) 40%, transparent)"></div>
+          <div style="height:22px;width:70%;border-radius:6px;background:rgba(255,255,255,.24)"></div>
+          <div style="height:18px;width:90%;border-radius:6px;background:rgba(255,255,255,.12)"></div>
+        </div>
+      </div>
+      <span style="font-weight:600;font-size:var(--t-mono);color:var(--accent);letter-spacing:.1em">DIRECTION — FORWARD ENTERS RIGHT</span>
+    </div>
+  </div>
+  <p style="margin:0;font-size:34px;letter-spacing:-.015em">Depth explains what. Direction explains where.</p>
+</section>
+
+<section data-label="Closing" data-screen-label="24" data-speaker-notes="Close on the filter." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="width:100px;height:4px;background:var(--accent)"></div>
+  <h2 style="margin:0;max-width:1480px;font-size:96px;font-weight:500;letter-spacing:-.04em;line-height:1.08">Motion is not decoration. It is the behavior of the interface.</h2>
+  <div style="display:flex;gap:60px;font-weight:600;font-size:var(--t-mono);color:var(--faint);letter-spacing:.12em;border-top:1px solid var(--line);padding-top:30px">
+    <span>HIDING LATENCY</span><span>GESTURE CONFIRMATION</span><span>MOTION AFFORDANCE</span><span>SPATIAL CONTINUITY</span>
+  </div>
+</section>
+</x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1920,&quot;height&quot;:1080}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    var tries = 0;
+    this._railTimer = setInterval(function () {
+      var st = document.querySelector('deck-stage');
+      if (st) { st.setAttribute('no-rail', ''); clearInterval(this._railTimer); }
+      else if (++tries > 60) clearInterval(this._railTimer);
+    }.bind(this), 100);
+  }
+  componentWillUnmount() { clearInterval(this._railTimer); }
+}
+</script>
+</body>
+</html>
