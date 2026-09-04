@@ -8,9 +8,9 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0c0c0e; --light:#efeee9; --ink:#f0f0f2; --dim:rgba(240,240,242,.55); --faint:rgba(240,240,242,.3);
@@ -60,7 +60,7 @@ a:hover{color:var(--ink)}
 @keyframes shiftup{0%,16%{transform:translateY(0)}30%,88%{transform:translateY(-114px)}96%,100%{transform:translateY(0)}}
 @keyframes gapin{0%,22%{opacity:0}32%,54%{opacity:1}64%,100%{opacity:0}}
 @keyframes cursor{0%,8%{transform:translate(0,0);opacity:0}16%{opacity:1}18%{transform:translate(0,-8px)}52%{transform:translate(0,334px)}62%{transform:translate(0,342px);opacity:1}70%,100%{opacity:0}}
-@keyframes reel{0%,16%{transform:translateY(0)}34%,100%{transform:translateY(-50%)}}
+@keyframes reel{0%,14%{transform:translateY(0)}30%,56%{transform:translateY(-33.3333%)}72%,100%{transform:translateY(-66.6667%)}}
 @keyframes toastin{0%,8%{transform:translateX(130%);opacity:0}26%{transform:translateX(-10px);opacity:1}34%,72%{transform:translateX(0);opacity:1}86%,100%{transform:translateX(130%);opacity:0}}
 @keyframes toastbar{0%,30%{transform:scaleX(0)}42%,72%{transform:scaleX(1)}80%,100%{transform:scaleX(0)}}
 @keyframes fly{0%,20%{transform:translate(0,0) scale(1);opacity:1}32%{transform:translate(40px,-70px) scale(.8);opacity:1}54%{transform:translate(637px,-161px) scale(.22);opacity:1}62%,100%{transform:translate(637px,-161px) scale(.12);opacity:0}}
@@ -69,9 +69,9 @@ a:hover{color:var(--ink)}
 @keyframes labela{0%,53.9%{opacity:1}54%,92%{opacity:0}92.1%,100%{opacity:1}}
 @keyframes cartbtn{0%,6%{transform:scale(1);filter:brightness(1)}12%,16%{transform:scale(.955);filter:brightness(.86)}24%,100%{transform:scale(1);filter:brightness(1)}}
 @keyframes labelb{0%,53.9%{opacity:0}54%,92%{opacity:1}92.1%,100%{opacity:0}}
-@keyframes hardswapa{0%,24.9%{opacity:1}25%,100%{opacity:0}}
-@keyframes hardswapb{0%,24.9%{opacity:0}25%,100%{opacity:1}}
-@keyframes flash{0%,16%{color:var(--ink)}26%{color:var(--accent)}44%,100%{color:var(--ink)}}
+@keyframes hardswapa{0%,29.9%{opacity:1}30%,71.9%{opacity:0}72%,100%{opacity:1}}
+@keyframes hardswapb{0%,29.9%{opacity:0}30%,71.9%{opacity:1}72%,100%{opacity:0}}
+@keyframes flash{0%,14%{color:var(--ink)}24%{color:var(--accent)}40%,62%{color:var(--ink)}70%{color:var(--accent)}86%,100%{color:var(--ink)}}
 @keyframes nudge{0%,60%,100%{transform:translateX(0)}72%{transform:translateX(-56px)}84%{transform:translateX(0)}}
 @keyframes peek{0%,55%{transform:translateX(0)}70%,85%{transform:translateX(-70px)}100%{transform:translateX(0)}}
 @keyframes chev{0%,45%{transform:rotate(0)}60%,90%{transform:rotate(90deg)}100%{transform:rotate(0)}}
@@ -85,7 +85,7 @@ a:hover{color:var(--ink)}
 @keyframes slideout{0%,20%{transform:translateX(0);opacity:.5}44%,84%{transform:translateX(-40%);opacity:.15}100%{transform:translateX(0);opacity:.5}}
 </style>
 </helmet>
-<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%" data-uneditable="">
 
 <section data-label="Title" data-screen-label="01" data-speaker-notes="Four forms of UX motion, shown rather than described." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">The Philosophy of UX Motion</div>
@@ -96,7 +96,40 @@ a:hover{color:var(--ink)}
   <div style="width:100px;height:4px;background:var(--accent)"></div>
 </section>
 
-<section data-label="Overview" data-screen-label="02" data-speaker-notes="Each form answers a question the user is already asking. If a transition answers none of them, cut it." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="About" data-screen-label="02" data-speaker-notes="Product design and VFX background — 15+ years, frame-level craft carried into product." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;align-items:center;gap:26px">
+    <span style="width:56px;height:1px;background:var(--faint)"></span>
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">About</span>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:64px">
+    <div style="border-bottom:1px solid var(--line);padding-bottom:44px">
+      <h2 style="margin:0;font-size:152px;font-weight:600;letter-spacing:-.05em;line-height:.9">Ali Said</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:110px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:30px">
+      <p style="margin:0;font-size:38px;font-weight:400;letter-spacing:-.02em">Product Design / Visual / VFX / Motion</p>
+      <p style="margin: 0; font-size: 28px; font-weight: 300; color: var(--dim); line-height: 1.55">I started in visual effects for motion pictures, then carried that frame-level craft into product, brand, and ad work — 15+ years on, including two years in-house at BMW and as design partner to teams shipping at scale, working shoulder-to-shoulder with engineers and product to protect the intent all the way to launch.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:40px">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.2em;color:var(--accent)">EXPERIENCE</span>
+          <div style="display:flex;flex-wrap:wrap;gap:14px"><span style="padding:12px 26px;border:1px solid var(--line);border-radius:999px;font-size:26px;color:var(--dim);white-space:nowrap">BMW</span><span style="padding:12px 26px;border:1px solid var(--line);border-radius:999px;font-size:26px;color:var(--dim);white-space:nowrap">Google</span><span style="padding:12px 26px;border:1px solid var(--line);border-radius:999px;font-size:26px;color:var(--dim);white-space:nowrap">LinkedIn</span><span style="padding:12px 26px;border:1px solid var(--line);border-radius:999px;font-size:26px;color:var(--dim);white-space:nowrap">Intuit</span><span style="padding:12px 26px;border:1px solid var(--line);border-radius:999px;font-size:26px;color:var(--dim);white-space:nowrap">Dropbox</span><span style="padding:12px 26px;border:1px solid var(--line);border-radius:999px;font-size:26px;color:var(--dim);white-space:nowrap">Walgreens</span><span style="padding:12px 26px;border:1px solid var(--line);border-radius:999px;font-size:26px;color:var(--dim);white-space:nowrap">Intuitive Surgical</span><span style="padding:12px 26px;border:1px solid var(--line);border-radius:999px;font-size:26px;color:var(--dim);white-space:nowrap">Legend3D</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.2em;color:var(--accent)">FILMOGRAPHY</span>
+          <div style="display:flex;flex-wrap:wrap;gap:14px"><span style="padding:12px 26px;border:1px solid var(--line);border-radius:999px;font-size:26px;color:var(--dim);white-space:nowrap">Transformers 3</span><span style="padding:12px 26px;border:1px solid var(--line);border-radius:999px;font-size:26px;color:var(--dim);white-space:nowrap">Smurfs</span><span style="padding:12px 26px;border:1px solid var(--line);border-radius:999px;font-size:26px;color:var(--dim);white-space:nowrap">Conan</span><span style="padding:12px 26px;border:1px solid var(--line);border-radius:999px;font-size:26px;color:var(--dim);white-space:nowrap">Top Gun</span><span style="padding:12px 26px;border:1px solid var(--line);border-radius:999px;font-size:26px;color:var(--dim);white-space:nowrap">Priest</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="width:100px;height:4px;background:var(--accent)"></div>
+</section>
+
+<section data-label="Reel" data-screen-label="03" data-speaker-notes="Reel — pause and scrub as needed." style="background:#000;padding:0;position:relative;overflow:hidden">
+  <video src="uploads/ux-motion-reel.mp4" data-reel="1" controls="controls" loop="loop" playsInline="playsInline" preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;background:#000"></video>
+</section>
+
+<section data-label="Overview" data-screen-label="04" data-speaker-notes="Each form answers a question the user is already asking. If a transition answers none of them, cut it." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Overview</div>
   <div style="display:flex;flex-direction:column">
     <div style="display:flex;align-items:baseline;gap:56px;padding:38px 0;border-top:1px solid var(--line)"><span style="width:70px;font-weight:600;font-size:var(--t-mono);color:var(--faint)">01</span><h3 style="margin:0;width:640px;font-size:58px;font-weight:500;letter-spacing:-.032em">Hiding latency</h3><span style="flex:1;font-size:32px;color:var(--dim)">Is it working?</span></div>
@@ -107,7 +140,7 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:32px;color:var(--dim);letter-spacing:-.01em">Motion should have a job.</p>
 </section>
 
-<section data-label="Ch 01" data-screen-label="03" data-speaker-notes="Chapter one — hiding latency." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Ch 01" data-screen-label="05" data-speaker-notes="Chapter one — hiding latency." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Chapter 01</div>
   <div style="display:flex;align-items:flex-end;gap:80px">
     <span style="font-size:280px;font-weight:300;letter-spacing:-.06em;line-height:.8;color:var(--accent)">01</span>
@@ -118,7 +151,7 @@ a:hover{color:var(--ink)}
   </div>
 </section>
 
-<section data-label="Indeterminate" data-screen-label="04" data-speaker-notes="Indeterminate: the system is working, duration unknown. Keep it short and local." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Indeterminate" data-screen-label="06" data-speaker-notes="Indeterminate: the system is working, duration unknown. Keep it short and local." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Indeterminate</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">DURATION UNKNOWN</span>
@@ -148,7 +181,7 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">Never fills. Never finishes. Use under a second.</p>
 </section>
 
-<section data-label="Determinate" data-screen-label="05" data-speaker-notes="Determinate: the total is known. Always forward, never reverse." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Determinate" data-screen-label="07" data-speaker-notes="Determinate: the total is known. Always forward, never reverse." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Determinate</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">TOTAL KNOWN</span>
@@ -162,7 +195,7 @@ a:hover{color:var(--ink)}
     </div>
     <div style="display:flex;flex-direction:column;gap:28px">
       <div style="height:420px;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center">
-        <svg viewBox="0 0 120 120" style="width:190px;height:190px;transform:rotate(-90deg)"><circle cx="60" cy="60" r="51" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="9" /><circle cx="60" cy="60" r="51" fill="none" stroke="oklch(0.68 0.17 250)" stroke-width="9" stroke-linecap="round" stroke-dasharray="320" stroke-dashoffset="320" style="animation:ringdash 4s cubic-bezier(.25,.1,.25,1) infinite" /></svg>
+        <svg viewBox="0 0 120 120" style="width:190px;height:190px;transform:rotate(-90deg)"><circle cx="60" cy="60" r="51" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="9"></circle><circle cx="60" cy="60" r="51" fill="none" stroke="oklch(0.68 0.17 250)" stroke-width="9" stroke-linecap="round" stroke-dasharray="320" stroke-dashoffset="320" style="animation:ringdash 4s cubic-bezier(.25,.1,.25,1) infinite"></circle></svg>
       </div>
       <span style="font-weight:600;font-size:var(--t-mono);color:var(--dim);letter-spacing:.1em">RING</span>
     </div>
@@ -182,7 +215,7 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">Always forward. Never reset, never reverse.</p>
 </section>
 
-<section data-label="Skeleton" data-screen-label="06" data-speaker-notes="The skeleton is a promise about the shape of what is coming. Watch it resolve." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Skeleton" data-screen-label="08" data-speaker-notes="The skeleton is a promise about the shape of what is coming. Watch it resolve." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Skeleton</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">SHAPE KNOWN</span>
@@ -217,22 +250,22 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">A wait becomes an arrival.</p>
 </section>
 
-<section data-label="Optimistic UI" data-screen-label="07" data-speaker-notes="The UI commits on tap. Confirmation arrives later, quietly. Only for actions that are cheap to reverse." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Optimistic UI" data-screen-label="09" data-speaker-notes="The UI commits on tap. Confirmation arrives later, quietly. Only for actions that are cheap to reverse." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Optimistic UI</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">COMMIT ON TAP · CONFIRM LATER</span>
   </div>
   <div style="height:520px;border:1px solid var(--line);border-radius:20px;display:flex;align-items:center;justify-content:center;position:relative">
     <div style="position:relative;animation:likepop 4s cubic-bezier(.34,1.4,.4,1) infinite">
-      <svg viewBox="0 0 24 24" style="width:200px;height:200px" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M12 20.5C6.5 16.5 3 13.7 3 9.9 3 7.2 5.1 5 7.8 5c1.6 0 3.2.8 4.2 2.2C13 5.8 14.6 5 16.2 5 18.9 5 21 7.2 21 9.9c0 3.8-3.5 6.6-9 10.6Z" /></svg>
-      <svg viewBox="0 0 24 24" style="width:200px;height:200px;position:absolute;inset:0;animation:likefill 4s steps(1,end) infinite" fill="oklch(0.68 0.17 250)"><path d="M12 20.5C6.5 16.5 3 13.7 3 9.9 3 7.2 5.1 5 7.8 5c1.6 0 3.2.8 4.2 2.2C13 5.8 14.6 5 16.2 5 18.9 5 21 7.2 21 9.9c0 3.8-3.5 6.6-9 10.6Z" /></svg>
+      <svg viewBox="0 0 24 24" style="width:200px;height:200px" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M12 20.5C6.5 16.5 3 13.7 3 9.9 3 7.2 5.1 5 7.8 5c1.6 0 3.2.8 4.2 2.2C13 5.8 14.6 5 16.2 5 18.9 5 21 7.2 21 9.9c0 3.8-3.5 6.6-9 10.6Z"></path></svg>
+      <svg viewBox="0 0 24 24" style="width:200px;height:200px;position:absolute;inset:0;animation:likefill 4s steps(1,end) infinite" fill="oklch(0.68 0.17 250)"><path d="M12 20.5C6.5 16.5 3 13.7 3 9.9 3 7.2 5.1 5 7.8 5c1.6 0 3.2.8 4.2 2.2C13 5.8 14.6 5 16.2 5 18.9 5 21 7.2 21 9.9c0 3.8-3.5 6.6-9 10.6Z"></path></svg>
     </div>
     <span style="position:absolute;bottom:56px;font-weight:600;font-size:var(--t-mono);color:var(--accent);letter-spacing:.14em;animation:confirmdot 4s steps(1,end) infinite">SERVER CONFIRMED</span>
   </div>
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">The interface replies first; the network catches up.</p>
 </section>
 
-<section data-label="Ch 02" data-screen-label="08" data-speaker-notes="Chapter two — gesture confirmation." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Ch 02" data-screen-label="10" data-speaker-notes="Chapter two — gesture confirmation." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Chapter 02</div>
   <div style="display:flex;align-items:flex-end;gap:80px">
     <span style="font-size:280px;font-weight:300;letter-spacing:-.06em;line-height:.8;color:var(--accent)">02</span>
@@ -243,7 +276,7 @@ a:hover{color:var(--ink)}
   </div>
 </section>
 
-<section data-label="Button press" data-screen-label="09" data-speaker-notes="120ms down, 120ms back. The reaction lands while the finger is still there." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Button press" data-screen-label="11" data-speaker-notes="120ms down, 120ms back. The reaction lands while the finger is still there." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">A button being pressed</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">SCALE 96% · RIPPLE · HALO · 120 MS</span>
@@ -260,7 +293,7 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">The reaction is the only part the user perceives instantly.</p>
 </section>
 
-<section data-label="Toggle, hold, slider" data-screen-label="10" data-speaker-notes="Three more acknowledgements: a state that flips, an action that has to be earned, and a value that tracks the pointer." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Toggle, hold, slider" data-screen-label="12" data-speaker-notes="Three more acknowledgements: a state that flips, an action that has to be earned, and a value that tracks the pointer." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Toggle, hold, slider</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">STATE · COMMITMENT · TRACKING</span>
@@ -277,7 +310,7 @@ a:hover{color:var(--ink)}
     <div style="display:flex;flex-direction:column;gap:28px">
       <div style="height:420px;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center">
         <div style="position:relative;width:200px;height:200px;animation:holdpress 4s cubic-bezier(.4,0,.2,1) infinite">
-          <svg viewBox="0 0 152 152" style="position:absolute;inset:0;transform:rotate(-90deg)"><circle cx="76" cy="76" r="68" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="7" /><circle cx="76" cy="76" r="68" fill="none" stroke="oklch(0.68 0.17 250)" stroke-width="7" stroke-linecap="round" stroke-dasharray="427" stroke-dashoffset="427" style="animation:holdring 4s linear infinite" /></svg>
+          <svg viewBox="0 0 152 152" style="position:absolute;inset:0;transform:rotate(-90deg)"><circle cx="76" cy="76" r="68" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="7"></circle><circle cx="76" cy="76" r="68" fill="none" stroke="oklch(0.68 0.17 250)" stroke-width="7" stroke-linecap="round" stroke-dasharray="427" stroke-dashoffset="427" style="animation:holdring 4s linear infinite"></circle></svg>
           <div style="position:absolute;inset:22px;border-radius:50%;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center">
             <span style="position:absolute;font-size:26px;color:var(--dim);animation:holdlabel 4s steps(1,end) infinite">Hold</span>
             <span style="position:absolute;font-size:26px;color:var(--accent);animation:holddone 4s steps(1,end) infinite">Deleted</span>
@@ -299,7 +332,7 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">Flip, commit, track — three different kinds of reply.</p>
 </section>
 
-<section data-label="Ch 03" data-screen-label="11" data-speaker-notes="Chapter three — motion affordance." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Ch 03" data-screen-label="13" data-speaker-notes="Chapter three — motion affordance." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Chapter 03</div>
   <div style="display:flex;align-items:flex-end;gap:80px">
     <span style="font-size:280px;font-weight:300;letter-spacing:-.06em;line-height:.8;color:var(--accent)">03</span>
@@ -310,7 +343,7 @@ a:hover{color:var(--ink)}
   </div>
 </section>
 
-<section data-label="Drag and drop" data-screen-label="12" data-speaker-notes="Pick up, reorder, drop. The list rearranges itself around the item while the gesture is still in progress." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Drag and drop" data-screen-label="14" data-speaker-notes="Pick up, reorder, drop. The list rearranges itself around the item while the gesture is still in progress." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Drag and drop</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">LIFT · REORDER · SETTLE</span>
@@ -333,7 +366,7 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">The list rearranges itself before the drop.</p>
 </section>
 
-<section data-label="Change" data-screen-label="13" data-speaker-notes="A silent value change is invisible. The transition says: look here." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Change" data-screen-label="15" data-speaker-notes="A silent value change is invisible. The transition says: look here." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Change</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">280 MS · ROLL + FLASH</span>
@@ -352,6 +385,7 @@ a:hover{color:var(--ink)}
           <div style="display:flex;flex-direction:column;animation:reel 3.4s cubic-bezier(.2,0,0,1) infinite">
             <span style="height:250px;line-height:250px;font-size:150px;font-weight:400;letter-spacing:-.05em;animation:flash 3.4s ease-in-out infinite">1,204</span>
             <span style="height:250px;line-height:250px;font-size:150px;font-weight:400;letter-spacing:-.05em;animation:flash 3.4s ease-in-out infinite">1,317</span>
+            <span style="height:250px;line-height:250px;font-size:150px;font-weight:400;letter-spacing:-.05em;animation:flash 3.4s ease-in-out infinite">1,204</span>
           </div>
         </div>
       </div>
@@ -361,7 +395,7 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">If it can change unwatched, it needs a transition.</p>
 </section>
 
-<section data-label="Invitation" data-screen-label="14" data-speaker-notes="Three small motions, each replacing a line of instructional copy." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Invitation" data-screen-label="16" data-speaker-notes="Three small motions, each replacing a line of instructional copy." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Invitation</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">MOTION INSTEAD OF COPY</span>
@@ -392,7 +426,7 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">Each one replaces a sentence of copy.</p>
 </section>
 
-<section data-label="Notification" data-screen-label="15" data-speaker-notes="Entering from the edge tells the user this arrived from outside the flow. Decelerate in, accelerate out." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Notification" data-screen-label="17" data-speaker-notes="Entering from the edge tells the user this arrived from outside the flow. Decelerate in, accelerate out." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Notification</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">ENTER FROM EDGE · DECELERATE</span>
@@ -417,7 +451,7 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">Arriving from the edge says: this came from outside.</p>
 </section>
 
-<section data-label="Add to cart" data-screen-label="16" data-speaker-notes="The item travels to the cart and the badge counts up. The user never has to check whether it worked." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Add to cart" data-screen-label="18" data-speaker-notes="The item travels to the cart and the badge counts up. The user never has to check whether it worked." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Add to cart</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">FLY TO TARGET · BADGE COUNT-UP</span>
@@ -425,7 +459,7 @@ a:hover{color:var(--ink)}
   <div style="display:flex;justify-content:center">
     <div style="width:900px;height:490px;border:1px solid var(--line);border-radius:18px;position:relative;overflow:hidden;box-sizing:border-box">
       <div style="position:absolute;right:44px;top:44px;width:90px;height:90px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;animation:cartpop 4.6s cubic-bezier(.2,0,0,1) infinite">
-        <svg viewBox="0 0 24 24" style="width:48px;height:48px" fill="none" stroke="rgba(255,255,255,.62)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h2.2l2.6 11.2h11" /><path d="M6.2 6.2h15L19 12.4H7.6" /><circle cx="9" cy="19.4" r="1.7" /><circle cx="17.4" cy="19.4" r="1.7" /></svg>
+        <svg viewBox="0 0 24 24" style="width:48px;height:48px" fill="none" stroke="rgba(255,255,255,.62)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h2.2l2.6 11.2h11"></path><path d="M6.2 6.2h15L19 12.4H7.6"></path><circle cx="9" cy="19.4" r="1.7"></circle><circle cx="17.4" cy="19.4" r="1.7"></circle></svg>
         <span style="position:absolute;right:-12px;top:-12px;min-width:42px;height:42px;border-radius:21px;background:var(--accent);color:#0c0c0e;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:22px;animation:badgein 4.6s cubic-bezier(.2,0,0,1) infinite">1</span>
       </div>
       <div style="position:absolute;left:44px;top:120px;width:260px;height:260px;border-radius:12px;background:color-mix(in oklch, var(--accent) 42%, transparent);animation:fly 4.6s cubic-bezier(.3,0,.2,1) infinite"></div>
@@ -443,7 +477,7 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">The item goes somewhere the user can see.</p>
 </section>
 
-<section data-label="Error and undo" data-screen-label="17" data-speaker-notes="Error draws attention to the cause. Delete keeps the door open." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Error and undo" data-screen-label="19" data-speaker-notes="Error draws attention to the cause. Delete keeps the door open." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Error and undo</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">SHAKE · COLLAPSE · RECOVER</span>
@@ -465,7 +499,6 @@ a:hover{color:var(--ink)}
           <div style="height:88px;border-radius:12px;background:rgba(255,255,255,.07);flex:none"></div>
           <div style="border-radius:12px;background:color-mix(in oklch, var(--accent) 40%, transparent);flex:none;overflow:hidden;animation:rowcollapse 4s cubic-bezier(.2,0,0,1) infinite"></div>
           <div style="height:88px;border-radius:12px;background:rgba(255,255,255,.07);flex:none"></div>
-          <div style="height:88px;border-radius:12px;background:rgba(255,255,255,.07);flex:none"></div>
         </div>
         <div style="position:absolute;left:44px;right:44px;bottom:36px;height:78px;border-radius:12px;background:#1c1c23;border:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;box-sizing:border-box;animation:undoin 4s cubic-bezier(.2,0,0,1) infinite">
           <span style="height:16px;width:130px;border-radius:6px;background:rgba(255,255,255,.28)"></span>
@@ -478,7 +511,7 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">Show what went wrong, and leave a way back.</p>
 </section>
 
-<section data-label="Ch 04" data-screen-label="18" data-speaker-notes="Chapter four — spatial continuity." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Ch 04" data-screen-label="20" data-speaker-notes="Chapter four — spatial continuity." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Chapter 04</div>
   <div style="display:flex;align-items:flex-end;gap:80px">
     <span style="font-size:280px;font-weight:300;letter-spacing:-.06em;line-height:.8;color:var(--accent)">04</span>
@@ -489,13 +522,13 @@ a:hover{color:var(--ink)}
   </div>
 </section>
 
-<section data-label="Expansion" data-screen-label="19" data-speaker-notes="The card becomes the page. Nothing needs explaining." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Expansion" data-screen-label="21" data-speaker-notes="The card becomes the page. Nothing needs explaining." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Expansion</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">320 MS · STANDARD</span>
   </div>
   <div style="display:flex;justify-content:center">
-    <div style="width:620px;height:500px;border:1px solid var(--line);border-radius:18px;padding:36px;position:relative;overflow:hidden">
+    <div style="width:620px;height:500px;box-sizing:border-box;border:1px solid var(--line);border-radius:18px;padding:36px;position:relative;overflow:hidden">
       <div style="position:absolute;inset:36px;display:flex;flex-direction:column;gap:28px;animation:fadelist 4.4s ease-in-out infinite">
         <div style="height:104px;border-radius:12px;background:rgba(255,255,255,.07)"></div>
         <div style="height:104px;border-radius:12px;background:transparent"></div>
@@ -510,7 +543,7 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">Objects should not teleport.</p>
 </section>
 
-<section data-label="Shared element" data-screen-label="20" data-speaker-notes="One element survives the cut and carries the user's attention with it." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Shared element" data-screen-label="22" data-speaker-notes="One element survives the cut and carries the user's attention with it." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Shared element</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">THUMBNAIL → HERO</span>
@@ -531,7 +564,7 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">One element survives the transition.</p>
 </section>
 
-<section data-label="Sheet and accordion" data-screen-label="21" data-speaker-notes="Both reveal in place. The sheet has snap points; the accordion pushes the list down rather than replacing it." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Sheet and accordion" data-screen-label="23" data-speaker-notes="Both reveal in place. The sheet has snap points; the accordion pushes the list down rather than replacing it." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Sheet and accordion</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">SNAP POINTS · REVEAL IN PLACE</span>
@@ -575,7 +608,7 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">Revealed in place, so the context never leaves.</p>
 </section>
 
-<section data-label="Mini to full player" data-screen-label="22" data-speaker-notes="The mini player grows into the full player rather than opening a new screen. Same object, different size." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Mini to full player" data-screen-label="24" data-speaker-notes="The mini player grows into the full player rather than opening a new screen. Same object, different size." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Growing in place</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">MINI PLAYER → FULL PLAYER</span>
@@ -599,14 +632,14 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">The same object, at a different size.</p>
 </section>
 
-<section data-label="Depth & direction" data-screen-label="23" data-speaker-notes="Depth says what a surface is. Direction says where you are." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+<section data-label="Depth &amp; direction" data-screen-label="25" data-speaker-notes="Depth says what a surface is. Direction says where you are." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h2 style="margin:0;font-size:var(--t-title);font-weight:500;letter-spacing:-.03em">Depth and direction</h2>
     <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--faint)">280 MS · ENTER</span>
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:70px">
     <div style="display:flex;flex-direction:column;gap:28px">
-      <div style="height:440px;border:1px solid var(--line);border-radius:16px;position:relative;overflow:hidden;padding:36px">
+      <div style="height:440px;box-sizing:border-box;border:1px solid var(--line);border-radius:16px;position:relative;overflow:hidden;padding:36px">
         <div style="position:absolute;inset:36px;display:flex;flex-direction:column;gap:22px">
           <div style="height:70px;border-radius:10px;background:rgba(255,255,255,.07)"></div>
           <div style="height:70px;border-radius:10px;background:rgba(255,255,255,.07)"></div>
@@ -636,12 +669,178 @@ a:hover{color:var(--ink)}
   <p style="margin:0;font-size:34px;letter-spacing:-.015em">Depth explains what. Direction explains where.</p>
 </section>
 
-<section data-label="Closing" data-screen-label="24" data-speaker-notes="Close on the filter." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
-  <div style="width:100px;height:4px;background:var(--accent)"></div>
-  <h2 style="margin:0;max-width:1480px;font-size:96px;font-weight:500;letter-spacing:-.04em;line-height:1.08">Motion is not decoration. It is the behavior of the interface.</h2>
-  <div style="display:flex;gap:60px;font-weight:600;font-size:var(--t-mono);color:var(--faint);letter-spacing:.12em;border-top:1px solid var(--line);padding-top:30px">
-    <span>HIDING LATENCY</span><span>GESTURE CONFIRMATION</span><span>MOTION AFFORDANCE</span><span>SPATIAL CONTINUITY</span>
+<section data-label="Examples divider" data-screen-label="26" data-speaker-notes="Shipped work. Every video pauses and scrubs — stop on any frame." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Examples</div>
+  <div style="display:flex;align-items:flex-end;gap:80px">
+    <span style="font-size:280px;font-weight:300;letter-spacing:-.06em;line-height:.8;color:var(--accent)">11</span>
+    <div style="display:flex;flex-direction:column;gap:32px;padding-bottom:24px">
+      <h2 style="margin:0;font-size:96px;font-weight:500;letter-spacing:-.04em;line-height:1">Shipped work</h2>
+      <p style="margin:0;max-width:900px;font-size:32px;font-weight:300;color:var(--dim);line-height:1.45">Every capture pauses and scrubs. Stop on any frame.</p>
+    </div>
   </div>
+  <div style="display:flex;gap:70px;font-weight:600;font-size:var(--t-mono);color:var(--faint);letter-spacing:.12em;border-top:1px solid var(--line);padding-top:30px">
+    <span>HIDING LATENCY — 5</span><span>GESTURE CONFIRMATION — 2</span><span>CHOREOGRAPHY — 3</span><span>SPATIAL CONTINUITY — 1</span>
+  </div>
+</section>
+
+<section data-label="Latency example 01" data-screen-label="27" data-speaker-notes="Pause and scrub." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;gap:34px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Example 01</span>
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-end;text-align:right;max-width:1040px">
+      <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--accent);white-space:nowrap">HIDING LATENCY</span>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0">
+    <div style="aspect-ratio:333/720;height:770px;max-height:100%;max-width:100%;border-radius:16px;border:1px solid var(--line);background:#000;overflow:hidden">
+      <video src="uploads/hiding%20latency%201.mp4" controls="controls" loop="loop" muted="muted" autoPlay="autoPlay" playsInline="playsInline" preload="metadata" style="width:100%;height:100%;display:block;object-fit:contain;background:#000"></video>
+    </div>
+  </div>
+</section>
+
+<section data-label="Latency example 02" data-screen-label="28" data-speaker-notes="Pause and scrub." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;gap:34px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Example 02</span>
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-end;text-align:right;max-width:1040px">
+      <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--accent);white-space:nowrap">HIDING LATENCY</span>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0">
+    <div style="aspect-ratio:333/720;height:770px;max-height:100%;max-width:100%;border-radius:16px;border:1px solid var(--line);background:#000;overflow:hidden">
+      <video src="uploads/hiding%20latency%20.mp4" controls="controls" loop="loop" muted="muted" autoPlay="autoPlay" playsInline="playsInline" preload="metadata" style="width:100%;height:100%;display:block;object-fit:contain;background:#000"></video>
+    </div>
+  </div>
+</section>
+
+<section data-label="Latency example 03" data-screen-label="29" data-speaker-notes="Pause and scrub." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;gap:34px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Example 03</span>
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-end;text-align:right;max-width:1040px">
+      <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--accent);white-space:nowrap">HIDING LATENCY</span>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0">
+    <div style="aspect-ratio:16/9;height:770px;max-height:100%;max-width:100%;border-radius:16px;border:1px solid var(--line);background:#000;overflow:hidden">
+      <video src="uploads/hiding%20latency%203.mp4" controls="controls" loop="loop" muted="muted" autoPlay="autoPlay" playsInline="playsInline" preload="metadata" style="width:100%;height:100%;display:block;object-fit:contain;background:#000"></video>
+    </div>
+  </div>
+</section>
+
+<section data-label="Latency example 04" data-screen-label="30" data-speaker-notes="Pause and scrub." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;gap:34px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Example 04</span>
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-end;text-align:right;max-width:1040px">
+      <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--accent);white-space:nowrap">HIDING LATENCY</span>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0">
+    <div style="aspect-ratio:1/1;height:770px;max-height:100%;max-width:100%;border-radius:16px;border:1px solid var(--line);background:#000;overflow:hidden">
+      <video src="uploads/hiding%20latency%204.mp4" controls="controls" loop="loop" muted="muted" autoPlay="autoPlay" playsInline="playsInline" preload="metadata" style="width:100%;height:100%;display:block;object-fit:contain;background:#000"></video>
+    </div>
+  </div>
+</section>
+
+<section data-label="Latency example 05" data-screen-label="31" data-speaker-notes="Looping reference — GIFs cannot be scrubbed." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;gap:34px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Example 05</span>
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-end;text-align:right;max-width:1040px">
+      <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--accent);white-space:nowrap">HIDING LATENCY</span>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0">
+    <div style="aspect-ratio:4/3;height:770px;max-height:100%;max-width:100%;border-radius:16px;border:1px solid var(--line);background:#000;overflow:hidden">
+      <img src="uploads/hiding%20latency.gif" alt="" style="width:100%;height:100%;object-fit:contain;display:block">
+    </div>
+  </div>
+</section>
+
+<section data-label="Confirmation example 01" data-screen-label="32" data-speaker-notes="Scrub to catch the press frame." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;gap:34px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Example 01</span>
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-end;text-align:right;max-width:1040px">
+      <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--accent);white-space:nowrap">GESTURE CONFIRMATION</span>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0">
+    <div style="aspect-ratio:333/720;height:770px;max-height:100%;max-width:100%;border-radius:16px;border:1px solid var(--line);background:#000;overflow:hidden">
+      <video src="uploads/gesture%20confirmation%20%601.mp4" controls="controls" loop="loop" muted="muted" autoPlay="autoPlay" playsInline="playsInline" preload="metadata" style="width:100%;height:100%;display:block;object-fit:contain;background:#000"></video>
+    </div>
+  </div>
+</section>
+
+<section data-label="Confirmation example 02" data-screen-label="33" data-speaker-notes="Looping reference." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;gap:34px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Example 02</span>
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-end;text-align:right;max-width:1040px">
+      <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--accent);white-space:nowrap">GESTURE CONFIRMATION</span>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0">
+    <div style="aspect-ratio:4/3;height:770px;max-height:100%;max-width:100%;border-radius:16px;border:1px solid var(--line);background:#000;overflow:hidden">
+      <img src="uploads/gesture%20confirmation.gif" alt="" style="width:100%;height:100%;object-fit:contain;display:block">
+    </div>
+  </div>
+</section>
+
+<section data-label="Choreography example 01" data-screen-label="34" data-speaker-notes="Choreography — how a set of elements arrives in relation to each other." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;gap:34px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Example 01</span>
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-end;text-align:right;max-width:1040px">
+      <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--accent);white-space:nowrap">CHOREOGRAPHY</span>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0">
+    <div style="aspect-ratio:16/9;height:770px;max-height:100%;max-width:100%;border-radius:16px;border:1px solid var(--line);background:#000;overflow:hidden">
+      <video src="uploads/choreography%201.mp4" controls="controls" loop="loop" muted="muted" autoPlay="autoPlay" playsInline="playsInline" preload="metadata" style="width:100%;height:100%;display:block;object-fit:contain;background:#000"></video>
+    </div>
+  </div>
+</section>
+
+<section data-label="Choreography example 02" data-screen-label="35" data-speaker-notes="Looping reference." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;gap:34px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Example 02</span>
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-end;text-align:right;max-width:1040px">
+      <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--accent);white-space:nowrap">CHOREOGRAPHY</span>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0">
+    <div style="aspect-ratio:4/3;height:770px;max-height:100%;max-width:100%;border-radius:16px;border:1px solid var(--line);background:#000;overflow:hidden">
+      <img src="uploads/choreography%202.gif" alt="" style="width:100%;height:100%;object-fit:contain;display:block">
+    </div>
+  </div>
+</section>
+
+<section data-label="Choreography example 03" data-screen-label="36" data-speaker-notes="Looping reference." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;gap:34px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Example 03</span>
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-end;text-align:right;max-width:1040px">
+      <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--accent);white-space:nowrap">CHOREOGRAPHY</span>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0">
+    <div style="aspect-ratio:4/3;height:770px;max-height:100%;max-width:100%;border-radius:16px;border:1px solid var(--line);background:#000;overflow:hidden">
+      <img src="uploads/cgoreography%203.gif" alt="" style="width:100%;height:100%;object-fit:contain;display:block">
+    </div>
+  </div>
+</section>
+
+<section data-label="Continuity example 01" data-screen-label="37" data-speaker-notes="Scrub through the transition frame by frame." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;gap:34px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--faint)">Example 01</span>
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-end;text-align:right;max-width:1040px">
+      <span style="font-weight:600;font-size:var(--t-mono);letter-spacing:.16em;color:var(--accent);white-space:nowrap">SPATIAL CONTINUITY</span>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0">
+    <div style="aspect-ratio:16/9;height:770px;max-height:100%;max-width:100%;border-radius:16px;border:1px solid var(--line);background:#000;overflow:hidden">
+      <video src="uploads/spatial%20continuity.mp4" controls="controls" loop="loop" muted="muted" autoPlay="autoPlay" playsInline="playsInline" preload="metadata" style="width:100%;height:100%;display:block;object-fit:contain;background:#000"></video>
+    </div>
+  </div>
+</section>
+
+<section data-label="Closing" data-screen-label="38" data-speaker-notes="Thank you." style="background:var(--bg);padding:var(--pt) var(--px) var(--pb);display:flex;flex-direction:column;justify-content:space-between">
+  <div style="width:100px;height:4px;background:var(--accent)"></div>
+  <h2 style="margin:0;font-size:180px;font-weight:500;letter-spacing:-.05em;line-height:.95">Thank you</h2>
+  <div style="border-top:1px solid var(--line)"></div>
 </section>
 </x-import>
 </x-dc>
@@ -654,8 +853,23 @@ class Component extends DCLogic {
       if (st) { st.setAttribute('no-rail', ''); clearInterval(this._railTimer); }
       else if (++tries > 60) clearInterval(this._railTimer);
     }.bind(this), 100);
+
+    var reel = function () { return document.querySelector('video[data-reel]'); };
+    this._onSlideChange = function (e) {
+      var v = reel();
+      if (!v) return;
+      var slide = v.closest('section');
+      var onReel = e.detail && e.detail.slide === slide;
+      if (onReel) { v.muted = false; return; }
+      v.pause();
+      v.muted = true;
+    };
+    document.addEventListener('slidechange', this._onSlideChange);
   }
-  componentWillUnmount() { clearInterval(this._railTimer); }
+  componentWillUnmount() {
+    clearInterval(this._railTimer);
+    if (this._onSlideChange) document.removeEventListener('slidechange', this._onSlideChange);
+  }
 }
 </script>
 </body>
